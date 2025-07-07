@@ -340,6 +340,7 @@ class FPT(BaseShotgun):
         page_id: int,
         additional_filters: Optional[List] = None,
         fields: Optional[List[str]] = None,
+        entity_type_in: Optional[str] = None,
     ) -> Iterator[Entity]:
         """
         Yield entities from a Page, applying the Page filters.
@@ -410,6 +411,7 @@ class FPT(BaseShotgun):
                         if panel_filters:
                             filters.extend(self._process_page_filters(panel_filters))
 
+        entity_type = entity_type or entity_type_in
         if not entity_type:
             raise ValueError("Could not determine entity type from page settings")
 
